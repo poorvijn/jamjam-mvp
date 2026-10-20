@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111116"><meta name="description" content="A shared room for listening to YouTube together.">
+  <title>Jam Jam — listen together</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><a class="brand" href="/"><span class="brand-mark">♫</span><span>jam jam</span></a><span class="live-pill"><i></i> REAL-TIME ROOM</span></header>
+    <section id="joinView" class="join-layout">
+      <div class="hero"><div class="eyebrow">YOUR MUSIC, YOUR PEOPLE</div><h1>One room.<br><span>One shared queue.</span></h1><p>Drop a YouTube link, invite your friends, and let anyone take the aux.</p><div class="hero-art"><div class="disc disc-one"></div><div class="disc disc-two"></div><div class="art-note">♫</div><div class="soundwave"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="hero-foot"><span>✦ Everyone gets a say</span><span>✦ No host privileges</span></div></div>
+      <form id="joinForm" class="join-card"><div class="card-kicker">GET THE ROOM GOING</div><h2>Listen together</h2><p>Start a new room or join your crew.</p><label for="nameInput">Your name</label><input id="nameInput" maxlength="24" placeholder="e.g. Alex" autocomplete="nickname" required><label for="roomInput">Room code <span class="optional">(optional)</span></label><input id="roomInput" maxlength="12" placeholder="Leave blank to create a room" autocomplete="off"><button class="primary full" type="submit">Enter the room <span>↗</span></button><div class="privacy-note">No account needed for this MVP. Your room stays live while its server is running.</div></form>
+    </section>
+    <section id="roomView" class="room-view hidden">
+      <div class="room-heading"><div><div class="eyebrow">YOU'RE IN THE ROOM</div><h1>Now we're <span>listening.</span></h1></div><div class="room-actions"><button id="inviteBtn" class="secondary">↗ Invite friends</button><button id="leaveBtn" class="icon-btn" title="Leave room">↩</button></div></div>
+      <div class="room-code-line"><span class="muted">ROOM CODE</span><strong id="roomCode">------</strong><button id="copyCodeBtn" class="text-btn">Copy code</button><span class="dot-sep">·</span><span id="listenerCount">0 listeners</span></div>
+      <div class="main-grid">
+        <section class="player-card"><div class="section-top"><span class="section-label">NOW PLAYING</span><span id="syncStatus" class="sync-status"><i></i> Sync ready</span></div><div id="player" class="youtube-player"><div class="player-placeholder"><span>♫</span><p>Add a YouTube link to start the vibe</p></div></div><div class="track-details"><div class="track-copy"><h2 id="currentTitle">Nothing playing yet</h2><p id="currentByline">The next song is one link away</p></div><span class="equalizer" id="equalizer"><i></i><i></i><i></i><i></i></span></div><div class="transport"><button id="prevBtn" class="transport-side" title="Previous track">|◀</button><button id="playBtn" class="play-btn" title="Play or pause">▶</button><button id="nextBtn" class="transport-side" title="Next track">▶|</button></div><div class="timeline"><span id="currentTime">0:00</span><input id="seekBar" type="range" min="0" max="1000" value="0" aria-label="Seek track"><span id="durationTime">0:00</span></div><div class="player-foot"><span>Playback commands sync across the room</span><span class="youtube-label">Powered by YouTube</span></div></section>
+        <section class="queue-card"><div class="queue-heading"><div><div class="section-label">THE LINEUP</div><h2>Up next <span id="queueCount" class="count-badge">0</span></h2></div><button id="clearInputBtn" class="text-btn">+ Add song</button></div><form id="addForm" class="add-form"><span class="link-icon">↳</span><input id="youtubeUrl" type="url" placeholder="Paste a YouTube link…" aria-label="YouTube video URL" required><button class="add-btn" type="submit" aria-label="Add song">+</button></form><p class="input-hint">YouTube video links, Shorts, and youtu.be links work.</p><div id="queueList" class="queue-list"><div class="empty-queue"><span>♫</span><strong>Your queue is waiting</strong><p>Paste a link above and start the party.</p></div></div><div class="queue-bottom"><span>Anyone here can edit the queue</span><span>↕ Drag with ↑ ↓</span></div></section>
+      </div>
+      <section class="people-card"><div class="people-title"><span class="section-label">IN THE ROOM</span><span id="peopleCount">0 people</span></div><div id="peopleList" class="people-list"></div></section>
+      <footer class="footer-note">Made for friends, not gatekeepers. <span>✦</span> Keep YouTube's player and ads intact.</footer>
+    </section>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
+  <script src="/socket.io/socket.io.js"></script><script src="https://www.youtube.com/iframe_api"></script><script src="/app.js"></script>
+</body></html>
